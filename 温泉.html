@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<title>温泉タイプ診断</title>
+<style>
+body { font-family: sans-serif; padding: 20px; background:#f5f5f5;}
+.question { margin-bottom:20px; padding:15px; background:white; border-radius:10px;}
+button { display:block; margin:5px 0; padding:10px; width:100%;}
+#result { margin-top:20px; font-size:20px; font-weight:bold;}
+</style>
+</head>
+<body>
+
+<h1>あなたはどの温泉タイプ？</h1>
+
+<div class="question">
+<p>Q1. 休日の過ごし方は？</p>
+<button onclick="answer('beppu')">アクティブに遊ぶ</button>
+<button onclick="answer('yufuin')">のんびり過ごす</button>
+<button onclick="answer('kuju')">自然の中でリフレッシュ</button>
+<button onclick="answer('kunisaki')">歴史や文化に触れる</button>
+</div>
+
+<div id="result"></div>
+
+<script>
+let scores = {beppu:0,yufuin:0,kuju:0,kunisaki:0};
+
+function answer(type){
+ scores[type]++;
+ showResult();
+}
+
+function showResult(){
+ let max = Object.keys(scores).reduce((a,b)=>scores[a]>scores[b]?a:b);
+ let text = {
+  beppu:"別府タイプ（エネルギッシュ）",
+  yufuin:"湯布院タイプ（癒し）",
+  kuju:"くじゅうタイプ（自然）",
+  kunisaki:"国東タイプ（思索）"
+ };
+ document.getElementById("result").innerText = "結果：" + text[max];
+}
+</script>
+
+</body>
+</html>
